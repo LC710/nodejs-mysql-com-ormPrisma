@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model clientes {
+  id    Int     @id @unique(map: "idclientes_UNIQUE") @default(autoincrement())
+  nome  String  @db.VarChar(45)
+  idade Int
+  uf    String? @db.VarChar(45)
+}
+
+
+//  npx prisma init
+// npx prisma db pull  // Pra puxar do banco de dados (pra montar os model do arquivo "schema.prisma") do "db", se quisesse começar pelo "schema" usaria o "push" assim "npx prisma db push" (Vc digitaria as "models" e ele criaria ou modificaria as "tabelas" no banco de dados);
+// "npx prisma db push" // Vc digitaria as "models" e ele criaria ou modificaria as "tabelas" no banco de dados;
+// npx prisma generate // Tem que rodar ele sempre que o esquema for alterado para refletir as mudanças no banco de dados; e vai gerar o "prisma/cliente" tbm;
